@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="in.capstone.newsapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="in.capstone.newsapp.NewsApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name="in.capstone.newsapp.ui.activity.MainActivity"
+            android:label="@string/app_name" />
+        <activity android:name="in.capstone.newsapp.ui.activity.ArticlesActivity" />
+        <activity
+            android:name="in.capstone.newsapp.ui.activity.NewsDetailActivity"
+            android:label="@string/title_activity_news_detail"
+            android:theme="@style/AppTheme.Detail" />
+
+        <meta-data
+            android:name="in.capstone.newsapp.utils.GlideConfiguration"
+            android:value="GlideModule" />
+
+        <activity android:name="in.capstone.newsapp.ui.activity.NewsDetailWebActivity">
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://recipe-app.com/recipe" -->
+                <data
+                    android:host="mobileappdev.in"
+                    android:pathPrefix="/news"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="in.capstone.newsapp.ui.activity.SplashScreenActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="in.capstone.newsapp.ui.activity.SourcesActivity"
+            android:label="@string/title_activity_sources"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="in.capstone.newsapp.ui.activity.AboutUsActivity"
+            android:label="@string/title_activity_favorite_aricles"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service android:name="in.capstone.newsapp.firebase.NewsFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name="in.capstone.newsapp.firebase.FBInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="in.capstone.newsapp.ui.activity.NotificationsActivity"
+            android:label="@string/notifications"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="in.capstone.newsapp.ui.activity.CreditsActivity"
+            android:label="@string/nav_credits"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <provider
+            android:name="in.capstone.newsapp.provider.NewsProvider"
+            android:authorities="in.capstone.newsapp" />
+
+        <receiver android:name="in.capstone.newsapp.ui.widget.NewsWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/news_widget" />
+        </receiver>
+    </application>
+
+</manifest>

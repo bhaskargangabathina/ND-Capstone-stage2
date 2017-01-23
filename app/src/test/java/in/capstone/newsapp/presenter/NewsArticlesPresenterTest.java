@@ -1,0 +1,55 @@
+package in.capstone.newsapp.presenter;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.List;
+
+import in.capstone.newsapp.models.Article;
+import in.capstone.newsapp.ui.views.ArticleListView;
+
+/**
+ * Udacity
+ * Created by bhaskar.gangabathina on 06-01-2017.
+ */
+
+@RunWith(MockitoJUnitRunner.class)
+public class NewsArticlesPresenterTest {
+
+    private ArticleListView articleListView = new ArticleListView() {
+        @Override
+        public void showLoading() {
+
+        }
+
+        @Override
+        public void hideLoading() {
+
+        }
+
+        @Override
+        public void showArticles(List<Article> articles) {
+
+        }
+
+        @Override
+        public void showError(String message, int type) {
+
+        }
+
+        @Override
+        public void hideError() {
+
+        }
+    };
+
+    @Test
+    public void testGetSources() {
+
+        NewsArticlesPresenter world = new NewsArticlesPresenter(articleListView, "cnn");
+        NewsArticlesPresenter spy = Mockito.spy(world);
+        Mockito.doNothing().when(spy).start();
+    }
+}
